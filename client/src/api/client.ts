@@ -127,3 +127,19 @@ export async function apiPut<T>(path: string, data?: unknown): Promise<T> {
 export async function apiDelete<T>(path: string): Promise<T> {
   return request<T>(path, { method: 'DELETE' });
 }
+
+// ─── ATS Score ────────────────────────────────────────────────────────────────
+
+export interface ATSScoreResponse {
+  score: number;
+  recommendations: string[];
+}
+
+/**
+ * POST /api/v1/ai/ats-score
+ * Calculates a simple ATS compatibility score for the given resume data.
+ */
+export async function apiGetATSScore(resumeData: unknown): Promise<{ success: boolean; data: ATSScoreResponse }> {
+  return apiPost('/ai/ats-score', { resume: resumeData });
+}
+

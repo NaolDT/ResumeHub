@@ -4,6 +4,7 @@ import { apiGet, apiPut } from '@/api/client';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { TemplateRenderer } from '@/features/templates/TemplateRenderer';
 import { ResumeData } from '@/features/templates/types';
+import { ATSScoreWidget } from '@/components/ATSScoreWidget';
 import {
   Save,
   Eye,
@@ -220,6 +221,8 @@ export const BuilderPage: React.FC = () => {
               </button>
             ))}
           </div>
+          {/* ATS Score Widget */}
+          <ATSScoreWidget resumeData={draft} />
         </div>
 
         {/* Middle — Editor Panel */}

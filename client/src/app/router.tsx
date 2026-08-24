@@ -9,6 +9,7 @@ import { ResetPasswordPage } from '@/pages/ResetPasswordPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { DashboardPage } from '@/pages/DashboardPage';
 import { BuilderPage } from '@/pages/BuilderPage';
+import { JobTrackerPage } from '@/pages/JobTrackerPage';
 import { useAuth } from '@/features/auth/AuthContext';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -52,6 +53,7 @@ export function AppRouter() {
       >
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/tracker" element={<JobTrackerPage />} />
       </Route>
 
       {/* Builder uses its own full-screen layout */}
