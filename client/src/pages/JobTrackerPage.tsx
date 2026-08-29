@@ -119,7 +119,7 @@ export const JobTrackerPage: React.FC = () => {
           {applications?.map((app) => (
             <div
               key={app._id}
-              className="flex items-center justify-between rounded-2xl border border-line bg-surface p-4 shadow-sm"
+              className="glass-card flex items-center justify-between rounded-2xl border border-line bg-surface p-4 shadow-sm hover:shadow-md hover:border-brand/30 hover:scale-[1.01] transition-all"
             >
               <div className="space-y-1">
                 <div className="text-lg font-semibold text-ink">

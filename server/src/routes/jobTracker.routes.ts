@@ -1,11 +1,11 @@
 import { Router } from 'express';
-import { requireAuth } from '../middleware/auth.middleware';
+import { requireAuth } from '../middleware/auth.middleware.js';
 import {
   getApplications,
   createApplication,
   updateApplication,
   deleteApplication,
-} from '../controllers/jobTracker.controller';
+} from '../controllers/jobTracker.controller.js';
 
 export const jobTrackerRouter = Router();
 

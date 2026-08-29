@@ -4,6 +4,7 @@ import { userRouter } from './user.routes.js';
 import { resumeRouter } from './resume.routes.js';
 import { jobTrackerRouter } from './jobTracker.routes.js';
 import { aiRouter } from './ai.routes.js';
+import { interviewRouter } from './interview.routes.js';
 
 export const v1Router = Router();
 
@@ -21,3 +22,5 @@ v1Router.use('/users', userRouter);
 v1Router.use('/resumes', resumeRouter);
 v1Router.use('/job-tracker', jobTrackerRouter);
 v1Router.use('/ai', aiRouter);
+v1Router.use('/interview-questions', interviewRouter);
+

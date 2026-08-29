@@ -10,6 +10,11 @@ import { ProfilePage } from '@/pages/ProfilePage';
 import { DashboardPage } from '@/pages/DashboardPage';
 import { BuilderPage } from '@/pages/BuilderPage';
 import { JobTrackerPage } from '@/pages/JobTrackerPage';
+import { CoverLettersPage } from '@/pages/CoverLettersPage';
+import { InterviewPrepPage } from '@/pages/InterviewPrepPage';
+import { PortfolioManagerPage } from '@/pages/PortfolioManagerPage';
+import { PublicPortfolioPage } from '@/pages/PublicPortfolioPage';
+import { PublicResumePage } from '@/pages/PublicResumePage';
 import { useAuth } from '@/features/auth/AuthContext';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -43,6 +48,10 @@ export function AppRouter() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
       </Route>
 
+      {/* Unstyled Public Pages */}
+      <Route path="/portfolio/:slug" element={<PublicPortfolioPage />} />
+      <Route path="/r/:slug" element={<PublicResumePage />} />
+
       {/* Protected App Routes (with AppLayout sidebar/header) */}
       <Route
         element={
@@ -54,6 +63,9 @@ export function AppRouter() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/tracker" element={<JobTrackerPage />} />
+        <Route path="/cover-letters" element={<CoverLettersPage />} />
+        <Route path="/interview-prep" element={<InterviewPrepPage />} />
+        <Route path="/portfolio" element={<PortfolioManagerPage />} />
       </Route>
 
       {/* Builder uses its own full-screen layout */}

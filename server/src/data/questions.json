@@ -1,0 +1,38 @@
+[
+  {
+    "id": "q1",
+    "topic": "Behavioral",
+    "question": "Tell me about a time you had a conflict with a coworker. How did you resolve it?",
+    "answer": "Focus on the STAR method: Situation, Task, Action, Result. Emphasize active listening, finding common ground, and keeping the focus on the project's success rather than personal differences."
+  },
+  {
+    "id": "q2",
+    "topic": "Behavioral",
+    "question": "Describe a situation where you had to meet a tight deadline. How did you manage your time?",
+    "answer": "Discuss prioritizing tasks (e.g., Eisenhower matrix), breaking the project into smaller milestones, communicating proactively with stakeholders about progress, and staying focused under pressure."
+  },
+  {
+    "id": "q3",
+    "topic": "Frontend",
+    "question": "Explain the virtual DOM in React and why it's useful.",
+    "answer": "The virtual DOM is a lightweight JavaScript representation of the actual DOM. React uses it to diff changes (reconciliation) before updating the real DOM. This minimizes expensive DOM operations and improves rendering performance."
+  },
+  {
+    "id": "q4",
+    "topic": "Frontend",
+    "question": "What is the difference between '==' and '===' in JavaScript?",
+    "answer": "'==' performs type coercion before comparison, meaning 1 == '1' is true. '===' checks both value and type, so 1 === '1' is false. Always prefer '===' to prevent unexpected bugs."
+  },
+  {
+    "id": "q5",
+    "topic": "Backend",
+    "question": "What are the key principles of REST?",
+    "answer": "Client-server architecture, statelessness (each request contains all needed info), cacheability, layered system, and a uniform interface (using standard HTTP methods like GET, POST, PUT, DELETE correctly)."
+  },
+  {
+    "id": "q6",
+    "topic": "Backend",
+    "question": "Explain the concept of middleware in Express.js.",
+    "answer": "Middleware functions have access to the request (req), response (res), and the next middleware function (next). They can execute code, make changes to req/res, end the cycle, or call next() to pass control."
+  }
+]

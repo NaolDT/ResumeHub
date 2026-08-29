@@ -51,7 +51,6 @@ export const DashboardPage: React.FC = () => {
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-      {/* Welcome Banner */}
       <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-brand to-brand-hover p-8 text-white shadow-lg shadow-brand/20">
         <div className="relative z-10">
           <h1 className="text-2xl font-bold tracking-tight">
@@ -96,7 +95,7 @@ export const DashboardPage: React.FC = () => {
           return (
             <div
               key={stat.label}
-              className="rounded-2xl border border-line bg-surface p-5 shadow-sm flex flex-col gap-3"
+              className="glass-card rounded-2xl border border-line bg-surface p-5 shadow-sm flex flex-col gap-3 hover:scale-[1.02] transition-transform duration-200"
             >
               <div className={`flex items-center gap-2 ${stat.color}`}>
                 <Icon className="h-5 w-5" />
@@ -108,7 +107,6 @@ export const DashboardPage: React.FC = () => {
         })}
       </div>
 
-      {/* Quick Action Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {[
           { label: 'ATS Score Checker', icon: Target, to: '/ats-check', desc: 'Optimize for ATS parsers', pro: true },
@@ -120,7 +118,7 @@ export const DashboardPage: React.FC = () => {
             <Link
               key={card.label}
               to={card.pro && !isPro ? '#' : card.to}
-              className={`group relative rounded-2xl border border-line bg-surface p-5 shadow-sm transition-all hover:shadow-md hover:border-brand/30 ${card.pro && !isPro ? 'opacity-60 pointer-events-none' : ''}`}
+              className={`group relative glass-card rounded-2xl border border-line bg-surface p-5 shadow-sm transition-all hover:shadow-md hover:border-brand/30 hover:scale-[1.02] ${card.pro && !isPro ? 'opacity-60 pointer-events-none' : ''}`}
             >
               <div className="flex items-start gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white transition-colors">
@@ -142,7 +140,6 @@ export const DashboardPage: React.FC = () => {
         })}
       </div>
 
-      {/* Resumes Section */}
       <div>
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-xl font-bold text-ink">My Resumes</h2>
@@ -183,7 +180,7 @@ export const DashboardPage: React.FC = () => {
               <Link
                 key={resume._id}
                 to={`/builder/${resume._id}`}
-                className="group rounded-2xl border border-line bg-surface p-6 shadow-sm hover:shadow-md hover:border-brand/30 transition-all flex flex-col justify-between gap-4"
+                className="group glass-card rounded-2xl border border-line bg-surface p-6 shadow-sm hover:shadow-md hover:border-brand/30 hover:scale-[1.02] transition-all flex flex-col justify-between gap-4"
               >
                 <div>
                   <div className="flex items-center gap-3 mb-3">

@@ -13,8 +13,11 @@ import {
   Zap,
   Shield,
   Star,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import { useAuth } from '@/features/auth/AuthContext';
+import { useTheme } from '@/features/theme/ThemeContext';
 
 const FEATURES = [
   {
@@ -66,9 +69,39 @@ const TEMPLATES = [
 
 export const HomePage: React.FC = () => {
   const { user } = useAuth();
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <div className="min-h-screen">
+      {/* Top Nav */}
+      <nav className="sticky top-0 z-30 border-b border-line bg-surface/80 backdrop-blur-md">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 flex items-center justify-between h-14">
+          <Link to="/" className="flex items-center gap-2 font-extrabold text-ink text-sm">
+            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand text-white font-bold text-xs">R</div>
+            ResumeHub
+          </Link>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={toggleTheme}
+              title={theme === 'dark' ? 'Light mode' : 'Dark mode'}
+              className="p-2 rounded-lg text-muted hover:text-ink hover:bg-canvas transition-colors"
+            >
+              {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
+            {user ? (
+              <Link to="/dashboard" className="px-4 py-1.5 rounded-xl text-sm font-semibold text-white bg-brand hover:bg-brand-hover transition-colors">
+                Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link to="/login" className="px-4 py-1.5 rounded-xl text-sm font-medium text-muted hover:text-ink transition-colors">Sign In</Link>
+                <Link to="/register" className="px-4 py-1.5 rounded-xl text-sm font-bold text-white bg-brand hover:bg-brand-hover transition-colors">Get Started</Link>
+              </>
+            )}
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-canvas via-surface to-canvas pt-16 pb-24 px-4 sm:px-6 lg:px-8">
         {/* Background decoration */}
@@ -158,7 +191,7 @@ export const HomePage: React.FC = () => {
               return (
                 <div
                   key={feature.title}
-                  className="group relative rounded-2xl border border-line bg-surface p-6 shadow-sm hover:shadow-md hover:border-brand/20 transition-all"
+                  className="group relative glass-card rounded-2xl border border-line bg-surface p-6 shadow-sm hover:shadow-md hover:border-brand/20 hover:scale-[1.02] transition-all"
                 >
                   <div
                     className={`flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-tr ${feature.color} text-white mb-4 shadow-lg group-hover:scale-110 transition-transform`}
@@ -209,7 +242,7 @@ export const HomePage: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {/* Free Tier */}
-            <div className="rounded-2xl border-2 border-line bg-surface p-8 shadow-sm">
+            <div className="glass-card rounded-2xl border-2 border-line bg-surface p-8 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all">
               <div className="mb-6">
                 <p className="text-sm font-bold text-muted uppercase tracking-wider">Free</p>
                 <div className="mt-2 flex items-baseline gap-1">
@@ -241,7 +274,7 @@ export const HomePage: React.FC = () => {
             </div>
 
             {/* Pro Tier */}
-            <div className="relative rounded-2xl border-2 border-brand bg-surface p-8 shadow-xl shadow-brand/10">
+            <div className="glass-card relative rounded-2xl border-2 border-brand bg-surface p-8 shadow-xl shadow-brand/10 hover:shadow-2xl hover:scale-[1.02] transition-all">
               <div className="absolute -top-4 left-1/2 -translate-x-1/2">
                 <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold text-white bg-gradient-to-r from-brand to-brand-hover shadow-md">
                   <Crown className="h-3.5 w-3.5 text-amber-300" /> Most Popular
@@ -303,6 +336,95 @@ export const HomePage: React.FC = () => {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-canvas border-t border-line py-12 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+            {/* Brand */}
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand text-white font-bold text-sm">R</div>
+                <span className="font-extrabold text-ink text-sm">ResumeHub</span>
+              </div>
+              <p className="text-xs text-muted leading-relaxed max-w-[200px]">
+                AI-powered career platform for building ATS-optimized resumes and landing your dream job.
+              </p>
+              <div className="flex items-center gap-1.5 text-xs text-muted">
+                <span className="inline-block h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                Phase 1 · Zero-Cost Stack
+              </div>
+            </div>
+
+            {/* Product */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-bold text-ink uppercase tracking-wider">Product</h4>
+              <ul className="space-y-2 text-sm text-muted">
+                {[
+                  { label: 'Resume Builder', to: '/register' },
+                  { label: 'ATS Checker', to: '/register' },
+                  { label: 'Cover Letter AI', to: '/register' },
+                  { label: 'Portfolio Website', to: '/register' },
+                  { label: 'Interview Prep', to: '/register' },
+                ].map(({ label, to }) => (
+                  <li key={label}>
+                    <Link to={to} className="hover:text-ink transition-colors">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Account */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-bold text-ink uppercase tracking-wider">Account</h4>
+              <ul className="space-y-2 text-sm text-muted">
+                {[
+                  { label: 'Sign Up Free', to: '/register' },
+                  { label: 'Sign In', to: '/login' },
+                  { label: 'Dashboard', to: '/dashboard' },
+                  { label: 'Profile', to: '/profile' },
+                ].map(({ label, to }) => (
+                  <li key={label}>
+                    <Link to={to} className="hover:text-ink transition-colors">
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Tech Stack */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-bold text-ink uppercase tracking-wider">Built With</h4>
+              <ul className="space-y-2 text-xs text-muted font-mono">
+                {['MongoDB', 'Express.js', 'React 18', 'Node.js', 'TypeScript', 'Tailwind CSS', 'Google Gemini AI'].map((tech) => (
+                  <li key={tech} className="flex items-center gap-1.5">
+                    <span className="h-1 w-1 rounded-full bg-brand/60 shrink-0" />
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Divider + bottom bar */}
+          <div className="border-t border-line pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted">
+            <span>© {new Date().getFullYear()} ResumeHub. Built for IEEE 29148:2018 compliance.</span>
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1.5">
+                <Shield className="h-3.5 w-3.5 text-brand" />
+                bcrypt + JWT Auth
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Zap className="h-3.5 w-3.5 text-brand" />
+                Gemini AI Powered
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };

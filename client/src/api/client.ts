@@ -143,3 +143,46 @@ export async function apiGetATSScore(resumeData: unknown): Promise<{ success: bo
   return apiPost('/ai/ats-score', { resume: resumeData });
 }
 
+// ─── Cover Letter ─────────────────────────────────────────────────────────────
+
+export interface CoverLetterResponse {
+  coverLetter: string;
+}
+
+/**
+ * POST /api/v1/ai/cover-letter
+ * Generates a cover letter from a resume and job description.
+ */
+export async function apiPostCoverLetter(resumeId: string, jobDescription: string): Promise<{ success: boolean; data: CoverLetterResponse }> {
+  return apiPost('/ai/cover-letter', { resumeId, jobDescription });
+}
+
+// ─── Interview Prep ──────────────────────────────────────────────────────────
+
+export interface InterviewQuestion {
+  id: string;
+  topic: string;
+  question: string;
+  answer: string;
+}
+
+/**
+ * GET /api/v1/interview-questions
+ * Retrieves a list of interview questions.
+ */
+export async function apiGetInterviewQuestions(topic?: string): Promise<{ success: boolean; data: InterviewQuestion[] }> {
+  const url = topic ? `/interview-questions?topic=${encodeURIComponent(topic)}` : '/interview-questions';
+  return apiGet(url);
+}
+
+
+
+// --- Public Portfolio & Resume -----------------------------------------------
+
+export async function apiGetPublicResume(slug: string): Promise<{ resume: any }> {
+  return apiGet(`/resumes/public/${slug}`);
+}
+
+export async function apiRecordResumeDownload(slug: string): Promise<{ message: string }> {
+  return apiPost(`/resumes/public/${slug}/download`);
+}

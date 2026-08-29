@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
+import { useTheme } from '@/features/theme/ThemeContext';
 import { useAuth } from '@/features/auth/AuthContext';
 import {
   LayoutDashboard,
@@ -14,6 +15,8 @@ import {
   Menu,
   Crown,
   ChevronRight,
+  Sun,
+  Moon,
 } from 'lucide-react';
 
 const NAV_ITEMS = [
@@ -28,6 +31,7 @@ const NAV_ITEMS = [
 
 export const AppLayout: React.FC = () => {
   const { user, logout } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const navigate = useNavigate();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -106,6 +110,14 @@ export const AppLayout: React.FC = () => {
           <LogOut className="h-4 w-4" />
           Sign Out
         </button>
+        <button
+          onClick={toggleTheme}
+          title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+          className="mt-1 w-full flex items-center gap-2 px-3 py-2 rounded-xl text-sm text-muted hover:text-ink hover:bg-canvas transition-all"
+        >
+          {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+        </button>
       </div>
     </div>
   );
@@ -143,9 +155,18 @@ export const AppLayout: React.FC = () => {
             <Menu className="h-5 w-5" />
           </button>
           <span className="font-bold text-ink text-sm">ResumeHub</span>
-          <Link to="/profile" className="p-2 rounded-lg text-muted hover:text-ink hover:bg-canvas transition-colors">
-            <User className="h-5 w-5" />
-          </Link>
+          <div className="flex items-center gap-1">
+            <button
+              onClick={toggleTheme}
+              title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="p-2 rounded-lg text-muted hover:text-ink hover:bg-canvas transition-colors"
+            >
+              {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </button>
+            <Link to="/profile" className="p-2 rounded-lg text-muted hover:text-ink hover:bg-canvas transition-colors">
+              <User className="h-5 w-5" />
+            </Link>
+          </div>
         </div>
 
         {/* Page Content */}

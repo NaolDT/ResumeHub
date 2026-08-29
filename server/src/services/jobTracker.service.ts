@@ -1,4 +1,4 @@
-import { JobApplication, IJobApplication } from '../models/jobTracker.model';
+import { JobApplication, IJobApplication } from '../models/jobTracker.model.js';
 import { Types } from 'mongoose';
 
 export class JobTrackerService {
